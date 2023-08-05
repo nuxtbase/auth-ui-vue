@@ -1,0 +1,60 @@
+{
+  "name": "@nuxtbase/auth-ui-vue",
+  "version": "0.0.1",
+  "type": "module",
+  "author": "xiaoluoboding <xiaoluoboding@gmail.com>",
+  "scripts": {
+    "dev": "vite --port 3003",
+    "build:docs": "vite build --mode docs",
+    "build:lib": "vue-tsc --noEmit && vite build --mode lib",
+    "preview": "vite preview",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xiaoluoboding/auth-ui-vue.git"
+  },
+  "homepage": "https://github.com/xiaoluoboding/auth-ui-vue",
+  "files": [
+    "lib",
+    "volar.d.ts"
+  ],
+  "main": "./lib/auth-ui-vue.umd.cjs",
+  "module": "./lib/auth-ui-vue.js",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "import": "./lib/auth-ui-vue.js",
+      "require": "./lib/auth-ui-vue.umd.cjs"
+    }
+  },
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "types": "./lib/index.d.ts",
+  "peerDependencies": {
+    "@supabase/auth-ui-shared": "^0.1.6",
+    "@supabase/supabase-js": "^2.31.0"
+  },
+  "devDependencies": {
+    "@iconify/json": "^2.1.104",
+    "@stitches/core": "^1.2.8",
+    "@supabase/auth-ui-shared": "^0.1.6",
+    "@supabase/supabase-js": "^2.31.0",
+    "@types/node": "^18.7.14",
+    "@unocss/reset": "^0.45.18",
+    "@vitejs/plugin-vue": "^3.0.3",
+    "@vueuse/core": "^9.1.1",
+    "@vueuse/head": "^1.1.23",
+    "highlight.js": "^11.6.0",
+    "typescript": "^4.6.4",
+    "unocss": "^0.45.13",
+    "unplugin-icons": "^0.14.9",
+    "unplugin-vue-components": "^0.22.4",
+    "vite": "^4.4.6",
+    "vite-plugin-dts": "^3.3.1",
+    "vite-plugin-lib-inject-css": "^1.0.1",
+    "vue": "^3.3.4",
+    "vue-tsc": "^1.8.6"
+  }
+}
