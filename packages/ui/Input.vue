@@ -2,7 +2,7 @@
   <input
     v-bind="attrs"
     :type="type"
-    :class="classNames.join(' ')"
+    :class="classNames"
     :style="appearance?.style?.input"
     :value="modelValue"
     @input="
@@ -69,12 +69,13 @@ const attrs = useAttrs()
 defineEmits(['update:modelValue'])
 
 const classNames = computed(() => {
-  return generateClassNames(
+  const names = generateClassNames(
     'input',
     inputDefaultStyles({
       type: props.type === 'password' ? 'password' : 'default'
     }),
     props.appearance
   )
+  return names.join(' ')
 })
 </script>

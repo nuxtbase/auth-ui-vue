@@ -1,11 +1,16 @@
 <template>
-  <component v-bind="attrs" is="a" :class="classNames.join(' ')" :style="appearance?.style?.anchor">
+  <component
+    v-bind="attrs"
+    is="a"
+    :class="classNames"
+    :style="appearance?.style?.anchor"
+  >
     <slot></slot>
   </component>
 </template>
 
 <script lang="ts" setup>
-import { computed, useAttrs } from "vue";
+import { computed, useAttrs } from 'vue'
 import { css } from '@stitches/core'
 import { generateClassNames } from '@supabase/auth-ui-shared'
 
@@ -20,8 +25,8 @@ const anchorDefaultStyles = css({
   textAlign: 'center',
   textDecoration: 'underline',
   '&:hover': {
-    color: '$anchorTextHoverColor',
-  },
+    color: '$anchorTextHoverColor'
+  }
 })
 
 export interface AnchorProps {
@@ -32,10 +37,11 @@ const props = withDefaults(defineProps<AnchorProps>(), {})
 const attrs = useAttrs()
 
 const classNames = computed(() => {
-  return generateClassNames(
+  const names = generateClassNames(
     'anchor',
     anchorDefaultStyles(),
     props.appearance
   )
+  return names.join(' ')
 })
-</script> 
+</script>

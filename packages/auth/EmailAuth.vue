@@ -173,5 +173,3 @@ const handleSubmit = async (e: Event) => {
   }
 }
 </script>
-
-<style scoped></style>

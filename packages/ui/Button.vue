@@ -1,7 +1,7 @@
 <template>
   <button
     v-bind="attrs"
-    :class="classNames.join(' ')"
+    :class="classNames"
     :style="appearance?.style?.button"
     :disabled="loading"
   >
@@ -75,10 +75,11 @@ const props = withDefaults(defineProps<ButtonProps>(), {
 const attrs = useAttrs()
 
 const classNames = computed(() => {
-  return generateClassNames(
+  const names = generateClassNames(
     'button',
     buttonDefaultStyles({ color: props.color }),
     props.appearance
   )
+  return names.join(' ')
 })
 </script>

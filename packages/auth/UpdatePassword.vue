@@ -85,5 +85,3 @@ const handleSubmit = async (e: Event) => {
   isLoading.value = false
 }
 </script>
-
-<style scoped></style>

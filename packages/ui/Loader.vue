@@ -1,11 +1,16 @@
 <template>
-  <component v-bind="attrs" is="div" :class="classNames.join(' ')" :style="appearance?.style?.loader">
+  <component
+    v-bind="attrs"
+    is="div"
+    :class="classNames"
+    :style="appearance?.style?.loader"
+  >
     <slot></slot>
   </component>
 </template>
 
 <script lang="ts" setup>
-import { computed, useAttrs } from "vue";
+import { computed, useAttrs } from 'vue'
 import { css } from '@stitches/core'
 import { generateClassNames } from '@supabase/auth-ui-shared'
 
@@ -34,7 +39,7 @@ const loaderDefaultStyles = css({
   '&:after': {
     borderRadius: '50%',
     width: '10em',
-    height: '10em',
+    height: '10em'
   }
 })
 
@@ -46,10 +51,11 @@ const props = withDefaults(defineProps<LoaderProps>(), {})
 const attrs = useAttrs()
 
 const classNames = computed(() => {
-  return generateClassNames(
+  const names = generateClassNames(
     'loader',
     loaderDefaultStyles(),
     props.appearance
   )
+  return names.join(' ')
 })
-</script> 
+</script>

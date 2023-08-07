@@ -1,11 +1,16 @@
 <template>
-  <component v-bind="attrs" is="label" :class="classNames.join(' ')" :style="appearance?.style?.label">
+  <component
+    v-bind="attrs"
+    is="label"
+    :class="classNames"
+    :style="appearance?.style?.label"
+  >
     <slot></slot>
   </component>
 </template>
 
 <script lang="ts" setup>
-import { computed, useAttrs } from "vue";
+import { computed, useAttrs } from 'vue'
 import { css } from '@stitches/core'
 import { generateClassNames } from '@supabase/auth-ui-shared'
 
@@ -16,7 +21,7 @@ const labelDefaultStyles = css({
   fontSize: '$baseLabelSize',
   marginBottom: '$labelBottomMargin',
   color: '$inputLabelText',
-  display: 'block',
+  display: 'block'
 })
 
 export interface LabelProps {
@@ -27,10 +32,11 @@ const props = withDefaults(defineProps<LabelProps>(), {})
 const attrs = useAttrs()
 
 const classNames = computed(() => {
-  return generateClassNames(
+  const names = generateClassNames(
     'label',
     labelDefaultStyles(),
     props.appearance
   )
+  return names.join(' ')
 })
-</script> 
+</script>

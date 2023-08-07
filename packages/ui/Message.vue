@@ -1,11 +1,16 @@
 <template>
-  <component v-bind="attrs" is="span" :class="classNames.join(' ')" :style="appearance?.style?.message">
+  <component
+    v-bind="attrs"
+    is="span"
+    :class="classNames"
+    :style="appearance?.style?.message"
+  >
     <slot></slot>
   </component>
 </template>
 
 <script lang="ts" setup>
-import { computed, useAttrs } from "vue";
+import { computed, useAttrs } from 'vue'
 import { css } from '@stitches/core'
 import { generateClassNames } from '@supabase/auth-ui-shared'
 
@@ -20,13 +25,13 @@ const messageDefaultStyles = css({
   variants: {
     color: {
       default: {
-        color: '$messageText',
+        color: '$messageText'
       },
       danger: {
-        color: '$messageTextDanger',
-      },
-    },
-  },
+        color: '$messageTextDanger'
+      }
+    }
+  }
 })
 
 export interface MessageProps {
@@ -38,10 +43,11 @@ const props = withDefaults(defineProps<MessageProps>(), {})
 const attrs = useAttrs()
 
 const classNames = computed(() => {
-  return generateClassNames(
+  const names = generateClassNames(
     'message',
     messageDefaultStyles({ color: props.color }),
     props.appearance
   )
+  return names.join(' ')
 })
-</script> 
+</script>
