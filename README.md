@@ -3,15 +3,17 @@
 ![@nuxtbase/auth-ui-vue minzip package size](https://img.shields.io/bundlephobia/minzip/@nuxtbase/auth-ui-vue)
 ![@nuxtbase/auth-ui-vue package version](https://img.shields.io/npm/v/@nuxtbase/auth-ui-vue.svg?colorB=green)
 
-> An opinionated toast component for Vue. It's a Vue port of Sonner
+> Pre-built auth ui widgets to get started in minutes.
 
 ## Preview
 
-https://user-images.githubusercontent.com/6118824/228208185-be5aefd4-7fa8-4f95-a41c-88a60c0e2800.mp4
+![Auth UI Vue](/public/preview.png)
 
 ## Introduction
 
-`Vue Sonner` is an opinionated toast component for Vue. It's customizable, but styled by default. Comes with a swipe to dismiss animation.
+`auth-ui-vue` is a prebuilt, customizable `Vue` component for authenticating users base on `supabase`
+
+Customizable authentication UI component with custom themes and extensible styles to match your brand and aesthetic.
 
 ## Installation
 
