@@ -135,7 +135,7 @@ const labels = computed(
   () => props.i18n?.[authView.value] as I18nVariables['sign_in' | 'sign_up']
 )
 const handleSubmit = async (e: Event) => {
-  console.log(props)
+  // console.log(props)
   isLoading.value = true
   switch (authView.value) {
     case 'sign_in':

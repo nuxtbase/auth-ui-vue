@@ -70,7 +70,7 @@ const labels = computed(
 )
 
 const handleSubmit = async (e: Event) => {
-  console.log(props)
+  // console.log(props)
   error.value = ''
   message.value = ''
   isLoading.value = true

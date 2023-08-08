@@ -121,7 +121,7 @@ const labels = computed(
 )
 
 const handleMagicLinkSignIn = async (e: Event) => {
-  console.log(props)
+  // console.log(props)
   error.value = ''
   message.value = ''
   isLoading.value = true

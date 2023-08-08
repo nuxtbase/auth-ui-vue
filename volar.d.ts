@@ -1,7 +1,7 @@
 // Auto generated component declarations
 declare module 'vue' {
   export interface GlobalComponents {
-    Toaster: typeof import('@nuxtbase/auth-ui-base')['Auth']
+    Auth: typeof import('@nuxtbase/auth-ui-vue')['Auth']
   }
 }
 export {}
