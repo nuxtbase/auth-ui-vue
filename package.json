@@ -32,6 +32,9 @@
     "**/*.css"
   ],
   "types": "./lib/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
   "peerDependencies": {
     "@supabase/auth-ui-shared": "^0.1.6",
     "@supabase/supabase-js": "^2.31.0"

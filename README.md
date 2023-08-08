@@ -2,8 +2,9 @@
 
 ![@nuxtbase/auth-ui-vue minzip package size](https://img.shields.io/bundlephobia/minzip/@nuxtbase/auth-ui-vue)
 ![@nuxtbase/auth-ui-vue package version](https://img.shields.io/npm/v/@nuxtbase/auth-ui-vue.svg?colorB=green)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/a855cf9a-2ec2-448a-a6a4-9661815bcb97/deploy-status)](https://app.netlify.com/sites/auth-ui-vue/deploys)
 
-> Pre-built auth ui widgets to get started in minutes.
+> Pre-built auth widgets to get started in minutes.
 
 ## Preview
 
@@ -11,7 +12,7 @@
 
 ## Introduction
 
-`auth-ui-vue` is a prebuilt, customizable `Vue` component for authenticating users base on `supabase`
+`auth-ui-vue` is a pre-built, customizable `Vue` component for authenticating users base on `supabase`
 
 Customizable authentication UI component with custom themes and extensible styles to match your brand and aesthetic.
 
@@ -31,6 +32,28 @@ yarn add @nuxtbase/auth-ui-vue
 
 ```html
 <!-- App.vue -->
+<template>
+  ...
+  <Auth
+    :appearance="{
+      theme: ThemeSupa,
+    }"
+    :supabase-client="supabase"
+  />
+  ...
+</template>
+
+<script setup lang="ts">
+import { ThemeSupa } from '@supabase/auth-ui-shared'
+import { createClient } from '@supabase/supabase-js'
+
+import Auth from '@nuxtbase/auth-ui-vue'
+
+const supabase = createClient(
+  import.meta.env.VITE_SUPABASE_URL,
+  import.meta.env.VITE_SUPABASE_ANON_KEY
+)
+</script>
 ```
 
 ### For Nuxt 3
