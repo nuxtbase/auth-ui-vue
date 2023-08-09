@@ -130,7 +130,7 @@ const props = withDefaults(defineProps<AuthProps>(), {
   otpType: 'email'
 })
 
-const authView = ref<ViewType>('sign_in')
+const authView = ref<ViewType>(props.view)
 const setAuthView = (newView: ViewType) => (authView.value = newView)
 
 provide(AuthViewKey, {

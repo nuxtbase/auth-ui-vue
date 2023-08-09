@@ -22,7 +22,29 @@
   </div>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { watch } from 'vue'
+
+import { injectStrict } from '@/utils'
+import { UserContextProviderInjection, UserContextProviderKey } from '@/types'
+
+const { session, user } = injectStrict<UserContextProviderInjection>(
+  UserContextProviderKey
+)
+
+// watch(
+//   () => session.value,
+//   (newSession) => {
+//     console.log(newSession)
+//   }
+// )
+// watch(
+//   () => user.value,
+//   (newUser) => {
+//     console.log(newUser)
+//   }
+// )
+</script>
 
 <style scoped>
 .toastWrapper {

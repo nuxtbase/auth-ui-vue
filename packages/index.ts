@@ -1,7 +1,7 @@
 import type { Plugin } from 'vue'
-import { Auth } from './component'
+import { Auth, UserContextProvider, useSupabaseUser } from './component'
 
-export { Auth }
+export { Auth, UserContextProvider, useSupabaseUser }
 
 const plugin: Plugin = {
   install(app) {

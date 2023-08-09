@@ -9,7 +9,10 @@
         <div
           class="relative lg:mx-auto lg:max-w-md 2xl:max-w-md bg-neutral-800"
         >
-          <div :class="classes[brandColor]" class="lg:min-w-md 2xl:min-w-md">
+          <div
+            :class="classes[brandColor]"
+            class="rounded-2xl lg:min-w-md 2xl:min-w-md"
+          >
             <div
               class="border-neutral-400 bg-neutral-800 relative rounded-xl px-8 py-12 drop-shadow-sm"
             >
@@ -51,7 +54,7 @@
                     }
                   }
                 }"
-                :supabase-client="supabase"
+                :supabase-client="supabaseClient"
                 :view="view.id"
                 :providers="['github', 'google', 'twitter']"
                 :socialLayout="socialLayout"
@@ -64,7 +67,9 @@
       </div>
       <div class="col-span-12 md:col-span-5 lg:col-span-6">
         <div class="container mx-auto max-w-full sm:max-w-2xl relative">
-          <Hero />
+          <UserContextProvider :supabase-client="supabaseClient">
+            <Hero />
+          </UserContextProvider>
 
           <main
             class="grid grid-cols-1 gap-8 text-xs 2xl:text-sm text-primary pb-20"
@@ -167,7 +172,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { ThemeSupa, ThemeMinimal, ViewType } from '@supabase/auth-ui-shared'
 import { createClient } from '@supabase/supabase-js'
 
@@ -176,13 +181,17 @@ import { useSEOHeader } from '~/composables/useSEOHeader'
 import Auth from '@/Auth.vue'
 import IconMenu from './components/IconMenu.vue'
 import IconPalette from './components/IconPalette.vue'
+import UserContextProvider, {
+  useSupabaseUser
+} from '@/auth/UserContextProvider'
 
-const supabase = createClient(
+const supabaseClient = createClient(
   import.meta.env.VITE_SUPABASE_URL,
   import.meta.env.VITE_SUPABASE_ANON_KEY
 )
 
 useSEOHeader()
+const { supabaseUser } = useSupabaseUser(supabaseClient)
 
 const classes: { [key: string]: string } = {
   'rgb(16, 185, 129)': 'container-greenshadow',
@@ -215,36 +224,38 @@ const brandColor = ref(colors[0])
 const borderRadius = ref(radii[0])
 const socialLayout = ref(socialAlignments[0])
 const view = ref(views[0])
-const currentView = computed(() => view.value.id)
 
 const backgroundColor = computed(() => {
   return brandColor.value.replace('rgb', 'rgba').replace(')', ', .2)')
 })
+
+watch(
+  () => supabaseUser.value,
+  (newUser) => {
+    console.log(newUser)
+  },
+  { deep: true }
+)
 </script>
 
 <style scoped>
 .container-purpleshadow {
   box-shadow: -2px 1px 69px 5px rgb(139, 92, 246);
-  border-radius: 1rem;
 }
 
 .container-pinkshadow {
   box-shadow: -2px 1px 69px 5px rgb(217, 70, 239);
-  border-radius: 1rem;
 }
 
 .container-greenshadow {
   box-shadow: -2px 1px 69px 5px rgb(16, 185, 129);
-  border-radius: 1rem;
 }
 
 .container-blueshadow {
   box-shadow: -2px 1px 69px 5px rgb(14, 165, 233);
-  border-radius: 1rem;
 }
 
 .container-orangeshadow {
   box-shadow: -2px 1px 69px 5px rgb(245, 158, 11);
-  border-radius: 1rem;
 }
 </style>

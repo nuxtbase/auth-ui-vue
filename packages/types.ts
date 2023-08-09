@@ -8,6 +8,7 @@ import {
   ViewType
 } from '@supabase/auth-ui-shared'
 import { SupabaseClient } from '@supabase/supabase-js'
+import type { Session, User } from '@supabase/supabase-js'
 
 export interface Appearance extends BaseAppearance {
   style?: {
@@ -73,4 +74,11 @@ export interface AuthViewInjection {
   setAuthView: (view: ViewType) => void
 }
 
+export interface UserContextProviderInjection {
+  session: Ref<Session | null>
+  user: Ref<User | null>
+}
+
 export const AuthViewKey: InjectionKey<AuthViewInjection> = Symbol('AuthView')
+export const UserContextProviderKey: InjectionKey<UserContextProviderInjection> =
+  Symbol('UserContextProvider')

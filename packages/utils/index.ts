@@ -1,7 +1,5 @@
 import { InjectionKey, inject } from 'vue'
 
-type AnyObject = Record<string, any>
-
 export function injectStrict<T>(key: InjectionKey<T>, fallback?: T) {
   const resolved = inject(key, fallback)
   if (!resolved) {

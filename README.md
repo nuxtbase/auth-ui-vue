@@ -36,23 +36,24 @@ yarn add @nuxtbase/auth-ui-vue
   ...
   <Auth
     :appearance="{
-      theme: ThemeSupa,
+      theme: ThemeSupa
     }"
-    :supabase-client="supabase"
+    :supabaseClient="supabaseClient"
   />
   ...
 </template>
 
 <script setup lang="ts">
-import { ThemeSupa } from '@supabase/auth-ui-shared'
-import { createClient } from '@supabase/supabase-js'
+  // Import predefined theme
+  import { ThemeSupa } from '@supabase/auth-ui-shared'
+  import { createClient } from '@supabase/supabase-js'
 
-import Auth from '@nuxtbase/auth-ui-vue'
+  import { Auth } from '@nuxtbase/auth-ui-vue'
 
-const supabase = createClient(
-  import.meta.env.VITE_SUPABASE_URL,
-  import.meta.env.VITE_SUPABASE_ANON_KEY
-)
+  const supabaseClient = createClient(
+    '<INSERT PROJECT URL>',
+    '<INSERT PROJECT ANON API KEY>'
+  )
 </script>
 ```
 
