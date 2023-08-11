@@ -8,12 +8,11 @@
 import { computed, useAttrs } from 'vue'
 import { createTheme } from '@stitches/core'
 import { merge } from '@supabase/auth-ui-shared'
-import { CssComponent } from '@stitches/core/types/styled-component'
 import { Appearance } from '@/types'
 
 interface AuthContainerProps {
   theme: 'default' | string
-  className?: string | CssComponent
+  className?: string
   appearance?: Appearance
 }
 
