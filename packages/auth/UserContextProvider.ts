@@ -1,13 +1,5 @@
 import { Session, SupabaseClient, User } from '@supabase/supabase-js'
-import {
-  PropType,
-  defineComponent,
-  h,
-  nextTick,
-  onMounted,
-  provide,
-  ref
-} from 'vue'
+import { PropType, defineComponent, h, onMounted, provide, ref } from 'vue'
 
 import { UserContextProviderKey } from '../types'
 
@@ -19,7 +11,7 @@ export default defineComponent({
       required: true
     }
   },
-  setup({ supabaseClient }) {
+  setup({ supabaseClient }, { slots }) {
     const session = ref<Session | null>(null)
     const user = ref<User | null>(null)
 
@@ -45,9 +37,8 @@ export default defineComponent({
       session,
       user
     })
-  },
-  render() {
-    return h('div', null, this.$slots?.default?.())
+
+    return () => h('div', null, slots?.default?.())
   }
 })
 
