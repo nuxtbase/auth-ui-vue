@@ -1,12 +1,13 @@
 import { defineConfig, UserConfig } from 'vite'
 import { resolve } from 'path'
-import vue from '@vitejs/plugin-vue'
+import Vue from '@vitejs/plugin-vue'
 import dts from 'vite-plugin-dts'
 import UnoCSS from 'unocss/vite'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 import Components from 'unplugin-vue-components/vite'
 import { libInjectCss } from 'vite-plugin-lib-inject-css'
+import VueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
@@ -16,7 +17,8 @@ export default defineConfig(({ command, mode }) => {
   // console.log(mode)
 
   const commonPlugins = [
-    vue(),
+    Vue(),
+    VueDevTools(),
     UnoCSS(),
     Components({
       resolvers: [
