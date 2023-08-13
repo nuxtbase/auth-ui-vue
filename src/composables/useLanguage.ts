@@ -2,6 +2,8 @@ import { en } from '@supabase/auth-ui-shared'
 import { useI18n } from 'vue-i18n'
 import cloneDeep from 'lodash.clonedeep'
 
+import { loadLanguageAsync, availableLocales } from '~/plugins/i18n'
+
 const sign_up = {
   email_label: '邮箱地址',
   password_label: '密码',
@@ -67,15 +69,19 @@ const zh = {
 }
 
 const useLanguage = () => {
-  const { locale, availableLocales } = useI18n()
+  const { locale } = useI18n()
 
   const toggleLocales = () => {
     const locales = availableLocales
-    locale.value = locales[(locales.indexOf(locale.value) + 1) % locales.length]
+    const newLocale =
+      locales[(locales.indexOf(locale.value) + 1) % locales.length]
+    loadLanguageAsync(newLocale)
+    locale.value = newLocale
   }
   return {
     en: cloneDeep(en),
     zh: cloneDeep(zh),
+    availableLocales,
     toggleLocales
   }
 }
