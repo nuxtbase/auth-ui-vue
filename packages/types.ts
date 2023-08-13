@@ -59,7 +59,7 @@ interface BaseAuth {
 }
 
 export interface AuthProps extends BaseAuth {
-  appearance?: BaseAppearance
+  appearance?: Appearance
 }
 
 export type AuthProvider =
