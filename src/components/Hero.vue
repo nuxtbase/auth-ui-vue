@@ -4,9 +4,20 @@
       <div className="!max-w-md">
         <h3 className="text-primary text-2xl mb-8 flex-between">
           <div>Auth UI Vue</div>
-          <div class="cursor-pointer" @click="toggleDarkmode()">
-            <ri:moon-line v-if="isDark" />
-            <ri:sun-line v-else />
+          <div class="flex items-center gap-2">
+            <div
+              class="cursor-pointer hover:bg-neutral-200 hover:dark:bg-neutral-700 p-2 rounded-md"
+              @click="toggleDarkmode()"
+            >
+              <ri:moon-line class="w-5 h-5" v-if="isDark" />
+              <ri:sun-line class="w-5 h-5" v-else />
+            </div>
+            <div
+              class="cursor-pointer hover:bg-neutral-200 hover:dark:bg-neutral-700 p-2 rounded-md"
+              @click="toggleLocales()"
+            >
+              <ri:translate-2 class="w-5 h-5" />
+            </div>
           </div>
         </h3>
         <p className="text-secondary !mb-0">
@@ -34,6 +45,9 @@ import { watch } from 'vue'
 import { injectStrict } from '@/utils'
 import { UserContextProviderInjection, UserContextProviderKey } from '@/types'
 import { isDark, toggleDarkmode } from '~/composables/useDarkmode'
+import { useLanguage } from '~/composables/useLanguage'
+
+const { toggleLocales } = useLanguage()
 
 const { session, user } = injectStrict<UserContextProviderInjection>(
   UserContextProviderKey
@@ -166,3 +180,4 @@ const { session, user } = injectStrict<UserContextProviderInjection>(
   }
 }
 </style>
+~/composables/useLanguage

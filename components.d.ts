@@ -18,6 +18,7 @@ declare module '@vue/runtime-core' {
     'Mdi:heart': typeof import('~icons/mdi/heart')['default']
     'Ri:moonLine': typeof import('~icons/ri/moon-line')['default']
     'Ri:sunLine': typeof import('~icons/ri/sun-line')['default']
+    'Ri:translate2': typeof import('~icons/ri/translate2')['default']
     ToggleButton: typeof import('./src/components/ToggleButton.vue')['default']
   }
 }

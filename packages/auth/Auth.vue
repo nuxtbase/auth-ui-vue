@@ -70,14 +70,14 @@ import { I18nVariables, ViewType, en, merge } from '@supabase/auth-ui-shared'
 import { createStitches } from '@stitches/core'
 import cloneDeep from 'lodash.clonedeep'
 
-import { AuthProps, AuthViewKey } from './types'
-import SocialAuthContainer from './auth/SocialAuthContainer.vue'
-import EmailAuth from './auth/EmailAuth.vue'
-import SocialAuth from './auth/SocialAuth.vue'
-import MagicLink from './auth/MagicLink.vue'
-import ForgottenPassword from './auth/ForgottenPassword.vue'
-import UpdatePassword from './auth/UpdatePassword.vue'
-import VerifyOtp from './auth/VerifyOtp.vue'
+import { AuthProps, AuthViewKey } from '../types'
+import SocialAuthContainer from './SocialAuthContainer.vue'
+import EmailAuth from './EmailAuth.vue'
+import SocialAuth from './SocialAuth.vue'
+import MagicLink from './MagicLink.vue'
+import ForgottenPassword from './ForgottenPassword.vue'
+import UpdatePassword from './UpdatePassword.vue'
+import VerifyOtp from './VerifyOtp.vue'
 
 const props = withDefaults(defineProps<AuthProps>(), {
   view: 'sign_in',
@@ -100,7 +100,11 @@ provide(AuthViewKey, {
 /**
  * Localization support
  */
-const i18n: I18nVariables = merge(en, props?.localization?.variables ?? {})
+const i18n = computed<I18nVariables>(() => {
+  const defaultLanguage = cloneDeep(en)
+  const newlanguage = cloneDeep(props?.localization?.variables)
+  return merge(defaultLanguage, newlanguage ?? {})
+})
 
 /**
  * Simple boolean to detect if authView 'sign_in' or 'sign_up' or 'magic_link' is used

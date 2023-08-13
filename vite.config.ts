@@ -8,6 +8,7 @@ import IconsResolver from 'unplugin-icons/resolver'
 import Components from 'unplugin-vue-components/vite'
 import { libInjectCss } from 'vite-plugin-lib-inject-css'
 import VueDevTools from 'vite-plugin-vue-devtools'
+import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
@@ -27,7 +28,10 @@ export default defineConfig(({ command, mode }) => {
         })
       ]
     }),
-    Icons()
+    Icons(),
+    VueI18nPlugin({
+      include: [resolve(__dirname, 'src/locales/**')]
+    })
   ]
 
   if (mode === 'lib') {

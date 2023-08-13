@@ -1,8 +1,16 @@
 # Auth UI Vue
 
-![@nuxtbase/auth-ui-vue minzip package size](https://img.shields.io/bundlephobia/minzip/@nuxtbase/auth-ui-vue)
-![@nuxtbase/auth-ui-vue package version](https://img.shields.io/npm/v/@nuxtbase/auth-ui-vue.svg?colorB=green)
+[![NPM][npmBadge]][npmUrl]
+[![Minzip Package][bundlePhobiaBadge]][bundlePhobiaUrl]
+[![NPM Download][npmDtBadge]][npmDtUrl]
 [![Netlify Status](https://api.netlify.com/api/v1/badges/a855cf9a-2ec2-448a-a6a4-9661815bcb97/deploy-status)](https://app.netlify.com/sites/auth-ui-vue/deploys)
+
+[npmBadge]: https://img.shields.io/npm/v/@nuxtbase/auth-ui-vue.svg?maxAge=2592000
+[npmUrl]: https://www.npmjs.com/package/@nuxtbase/auth-ui-vue
+[npmDtBadge]: https://img.shields.io/npm/dt/@nuxtbase/auth-ui-vue.svg
+[npmDtUrl]: https://www.npmjs.com/package/@nuxtbase/auth-ui-vue
+[bundlePhobiaBadge]: https://img.shields.io/bundlephobia/minzip/@nuxtbase/auth-ui-vue
+[bundlePhobiaUrl]: https://bundlephobia.com/package/@nuxtbase/auth-ui-vue@lasted
 
 > Pre-built auth widgets to get started in minutes.
 

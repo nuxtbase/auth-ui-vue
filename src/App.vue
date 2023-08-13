@@ -62,6 +62,9 @@
                 :socialLayout="socialLayout"
                 :theme="theme"
                 :dark="isDark"
+                :localization="{
+                  variables: I18nVariables
+                }"
                 show-links
               />
             </div>
@@ -174,12 +177,14 @@
 
 <script lang="ts" setup>
 import { computed, ref, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { ThemeSupa, ThemeMinimal, ViewType } from '@supabase/auth-ui-shared'
 import { createClient } from '@supabase/supabase-js'
 
 import { isDark } from '~/composables/useDarkmode'
+import { useLanguage } from './composables/useLanguage'
 import { useSEOHeader } from '~/composables/useSEOHeader'
-import Auth from '@/Auth.vue'
+import Auth from '@/auth/Auth.vue'
 import IconMenu from './components/IconMenu.vue'
 import IconPalette from './components/IconPalette.vue'
 import UserContextProvider, {
@@ -193,6 +198,8 @@ const supabaseClient = createClient(
 
 useSEOHeader()
 const { supabaseUser } = useSupabaseUser(supabaseClient)
+const { locale } = useI18n()
+const { en, zh } = useLanguage()
 
 const classes: { [key: string]: string } = {
   'rgb(16, 185, 129)': 'container-greenshadow',
@@ -231,7 +238,7 @@ const backgroundColor = computed(() => {
   return brandColor.value.replace('rgb', 'rgba').replace(')', `, ${opacity})`)
 })
 const theme = computed(() => (isDark.value ? 'dark' : 'default'))
-
+const I18nVariables = computed(() => (locale.value === 'en-US' ? en : zh))
 watch(
   () => supabaseUser.value,
   (newUser) => {
@@ -243,22 +250,42 @@ watch(
 
 <style scoped>
 .container-purpleshadow {
-  box-shadow: -2px 1px 69px 5px rgb(139, 92, 246);
+  box-shadow: 0px 0px 256px rgb(139, 92, 246, 0.3);
 }
 
 .container-pinkshadow {
-  box-shadow: -2px 1px 69px 5px rgb(217, 70, 239);
+  box-shadow: 0px 0px 256px rgb(217, 70, 239, 0.3);
 }
 
 .container-greenshadow {
-  box-shadow: -2px 1px 69px 5px rgb(16, 185, 129);
+  box-shadow: 0px 0px 256px rgb(16, 185, 129, 0.3);
 }
 
 .container-blueshadow {
-  box-shadow: -2px 1px 69px 5px rgb(14, 165, 233);
+  box-shadow: 0px 0px 256px rgb(14, 165, 233, 0.3);
 }
 
 .container-orangeshadow {
-  box-shadow: -2px 1px 69px 5px rgb(245, 158, 11);
+  box-shadow: 0px 0px 256px rgb(245, 158, 11, 0.3);
+}
+
+.dark .container-purpleshadow {
+  box-shadow: 0px 0px 256px rgb(139, 92, 246, 0.6);
+}
+
+.dark .container-pinkshadow {
+  box-shadow: 0px 0px 256px rgb(217, 70, 239, 0.6);
+}
+
+.dark .container-greenshadow {
+  box-shadow: 0px 0px 256px rgb(16, 185, 129, 0.6);
+}
+
+.dark .container-blueshadow {
+  box-shadow: 0px 0px 256px rgb(14, 165, 233, 0.6);
+}
+
+.dark .container-orangeshadow {
+  box-shadow: 0px 0px 256px rgb(245, 158, 11, 0.6);
 }
 </style>
