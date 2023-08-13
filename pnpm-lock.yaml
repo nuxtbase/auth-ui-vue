@@ -17,6 +17,9 @@ devDependencies:
   '@supabase/supabase-js':
     specifier: ^2.31.0
     version: 2.31.0
+  '@types/lodash.clonedeep':
+    specifier: ^4.5.7
+    version: 4.5.7
   '@types/node':
     specifier: ^18.7.14
     version: 18.7.14
@@ -35,6 +38,9 @@ devDependencies:
   highlight.js:
     specifier: ^11.6.0
     version: 11.6.0
+  lodash.clonedeep:
+    specifier: ^4.5.0
+    version: 4.5.0
   typescript:
     specifier: ^4.6.4
     version: 4.6.4
@@ -1073,6 +1079,16 @@ packages:
 
   /@types/estree@1.0.1:
     resolution: {integrity: sha512-LG4opVs2ANWZ1TJoKc937iMmNstM/d0ae1vNbnBvBhqCSezgVUOzcLCqbI5elV8Vy6WKwKjaqR+zO9VKirBBCA==}
+    dev: true
+
+  /@types/lodash.clonedeep@4.5.7:
+    resolution: {integrity: sha512-ccNqkPptFIXrpVqUECi60/DFxjNKsfoQxSQsgcBJCX/fuX1wgyQieojkcWH/KpE3xzLoWN/2k+ZeGqIN3paSvw==}
+    dependencies:
+      '@types/lodash': 4.14.197
+    dev: true
+
+  /@types/lodash@4.14.197:
+    resolution: {integrity: sha512-BMVOiWs0uNxHVlHBgzTIqJYmj+PgCo4euloGF+5m4okL3rEYzM2EEv78mw8zWSMM57dM7kVIgJ2QDvwHSoCI5g==}
     dev: true
 
   /@types/node@18.7.14:
@@ -2419,6 +2435,10 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       p-locate: 5.0.0
+    dev: true
+
+  /lodash.clonedeep@4.5.0:
+    resolution: {integrity: sha512-H5ZhCF25riFd9uB5UCkVKo61m3S/xZk1x4wA6yp/L3RFP6Z/eHH1ymQcGLo7J3GMPfm0V/7m1tryHuGVxpqEBQ==}
     dev: true
 
   /lodash.get@4.4.2:

@@ -66,20 +66,11 @@
 
 <script lang="ts" setup>
 import { provide, ref, watch, computed } from 'vue'
-import { Provider, SupabaseClient } from '@supabase/supabase-js'
-import {
-  I18nVariables,
-  OtpType,
-  ProviderScopes,
-  RedirectTo,
-  SocialLayout,
-  ViewType,
-  en,
-  merge
-} from '@supabase/auth-ui-shared'
+import { I18nVariables, ViewType, en, merge } from '@supabase/auth-ui-shared'
 import { createStitches } from '@stitches/core'
+import cloneDeep from 'lodash.clonedeep'
 
-import { Appearance, AuthViewKey } from './types'
+import { AuthProps, AuthViewKey } from './types'
 import SocialAuthContainer from './auth/SocialAuthContainer.vue'
 import EmailAuth from './auth/EmailAuth.vue'
 import SocialAuth from './auth/SocialAuth.vue'
@@ -87,37 +78,6 @@ import MagicLink from './auth/MagicLink.vue'
 import ForgottenPassword from './auth/ForgottenPassword.vue'
 import UpdatePassword from './auth/UpdatePassword.vue'
 import VerifyOtp from './auth/VerifyOtp.vue'
-
-interface AuthProps {
-  supabaseClient: SupabaseClient
-  socialLayout?: SocialLayout
-  providers?: Provider[]
-  providerScopes?: Partial<ProviderScopes>
-  queryParams?: {
-    [key: string]: string
-  }
-  view?: ViewType
-  redirectTo?: RedirectTo
-  appearance?: Appearance
-  onlyThirdPartyProviders?: boolean
-  magicLink?: boolean
-  showLinks?: boolean
-  otpType?: OtpType
-  additionalData?: {
-    [key: string]: any
-  }
-  /**
-   * This will toggle on the dark variation of the theme
-   */
-  dark?: boolean
-  /**
-   * Override the labels and button text
-   */
-  localization?: {
-    variables?: I18nVariables
-  }
-  theme?: 'default' | string
-}
 
 const props = withDefaults(defineProps<AuthProps>(), {
   view: 'sign_in',
@@ -156,16 +116,18 @@ const isSignView = computed(() => {
 })
 
 const theme = computed(() => {
+  const appearanceTheme = cloneDeep(props.appearance?.theme)
+  const appearanceVariables = cloneDeep(props.appearance?.variables)
   return merge(
-    props?.appearance?.theme?.default ?? {},
-    props?.appearance?.theme?.[props.theme] ?? {},
-    props?.appearance?.variables?.default ?? {},
-    props?.appearance?.variables?.[props?.theme] ?? {}
+    appearanceTheme?.default ?? {},
+    appearanceTheme?.[props.theme] ?? {},
+    appearanceVariables?.default ?? {},
+    appearanceVariables?.[props?.theme] ?? {}
   )
 })
 createStitches({ theme: theme.value })
 watch(
-  () => props.appearance,
+  () => [props.appearance, props.theme],
   () => {
     createStitches({ theme: theme.value })
   },

@@ -16,6 +16,8 @@ declare module '@vue/runtime-core' {
     'Logos:nuxtIcon': typeof import('~icons/logos/nuxt-icon')['default']
     'Logos:vue': typeof import('~icons/logos/vue')['default']
     'Mdi:heart': typeof import('~icons/mdi/heart')['default']
+    'Ri:moonLine': typeof import('~icons/ri/moon-line')['default']
+    'Ri:sunLine': typeof import('~icons/ri/sun-line')['default']
     ToggleButton: typeof import('./src/components/ToggleButton.vue')['default']
   }
 }

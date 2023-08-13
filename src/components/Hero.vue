@@ -2,18 +2,24 @@
   <div class="flex flex-col gap-3">
     <div className="col-span-12 md:col-span-5 lg:col-span-6">
       <div className="!max-w-md">
-        <h3 className="text-neutral-100 text-2xl mb-8">Auth UI Vue</h3>
-        <p className="text-neutral-200 !mb-0">
+        <h3 className="text-primary text-2xl mb-8 flex-between">
+          <div>Auth UI Vue</div>
+          <div class="cursor-pointer" @click="toggleDarkmode()">
+            <ri:moon-line v-if="isDark" />
+            <ri:sun-line v-else />
+          </div>
+        </h3>
+        <p className="text-secondary !mb-0">
           Pre-built auth widgets to get started in minutes.
         </p>
-        <p className="text-neutral-400 mt-0">
+        <p className="text-thirdary mt-0">
           Customizable authentication UI component with custom themes and
           extensible styles to match your brand and aesthetic
         </p>
-        <div className="text-neutral-300 mb-4 pt-6 flex items-center space-x-2">
+        <div className="text-thirdary mb-4 pt-6 flex items-center space-x-2">
           <small class="flex items-center">
-            Currently available in &nbsp; <logos:vue /> &nbsp;Vue 3
-            &nbsp;/&nbsp; <logos:nuxt-icon />&nbsp;Nuxt 3
+            Ready for &nbsp; <logos:vue /> &nbsp;Vue 3 &nbsp;/&nbsp;
+            <logos:nuxt-icon />&nbsp;Nuxt 3
           </small>
         </div>
       </div>
@@ -27,6 +33,7 @@ import { watch } from 'vue'
 
 import { injectStrict } from '@/utils'
 import { UserContextProviderInjection, UserContextProviderKey } from '@/types'
+import { isDark, toggleDarkmode } from '~/composables/useDarkmode'
 
 const { session, user } = injectStrict<UserContextProviderInjection>(
   UserContextProviderKey

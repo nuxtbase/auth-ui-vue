@@ -4,7 +4,7 @@
     text="slate-50 dark:slate-300 opacity-60 sm"
   >
     <div class="copyright flex flex-col justify-center items-center">
-      <p>
+      <p class="text-thirdary">
         Code with ❤ & ☕️ by
         <a class="text-neon" href="https://github.com/xiaoluoboding">
           @xiaoluoboding

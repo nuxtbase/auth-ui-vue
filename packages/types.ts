@@ -1,14 +1,19 @@
-import { CSSProperties, InjectionKey, Ref } from 'vue'
-import {
-  AuthProviders,
+import type { CSSProperties, InjectionKey, Ref } from 'vue'
+import type {
   BaseAppearance,
-  BaseAuth,
   I18nVariables,
+  OtpType,
+  ProviderScopes,
+  RedirectTo,
   SocialLayout,
   ViewType
 } from '@supabase/auth-ui-shared'
-import { SupabaseClient } from '@supabase/supabase-js'
-import type { Session, User } from '@supabase/supabase-js'
+import type {
+  Provider,
+  Session,
+  SupabaseClient,
+  User
+} from '@supabase/supabase-js'
 
 export interface Appearance extends BaseAppearance {
   style?: {
@@ -23,19 +28,23 @@ export interface Appearance extends BaseAppearance {
   }
 }
 
-export interface Auth extends BaseAuth {
-  appearance?: BaseAppearance
-}
-
-export interface AuthProps {
-  supabaseClient: SupabaseClient // Supabase Client
-  socialLayout?: SocialLayout // This determines how the social providers show be displayed
-  providers?: AuthProviders // This is a list of social providers to be used
-  view?: ViewType // This determines the type of auth component to be shown
-  redirectTo?: undefined | string // This will determine where to redirect the user to after some auth operations
-  onlyThirdPartyProviders?: boolean // This will toggle if to show just the social providers without the EmailAuth component
-  magicLink?: boolean // This will toggle the 'Send magic link' on the links
-  showLinks?: boolean // This will toggle the links on the auth component to change the auth view
+interface BaseAuth {
+  supabaseClient: SupabaseClient
+  socialLayout?: SocialLayout
+  providers?: Provider[]
+  providerScopes?: Partial<ProviderScopes>
+  queryParams?: {
+    [key: string]: string
+  }
+  view?: ViewType
+  redirectTo?: RedirectTo
+  onlyThirdPartyProviders?: boolean
+  magicLink?: boolean
+  showLinks?: boolean
+  otpType?: OtpType
+  additionalData?: {
+    [key: string]: any
+  }
   /**
    * This will toggle on the dark variation of the theme
    */
@@ -44,11 +53,13 @@ export interface AuthProps {
    * Override the labels and button text
    */
   localization?: {
-    lang?: 'en' | 'zh'
     variables?: I18nVariables
   }
-  appearance?: BaseAppearance
   theme?: 'default' | string
+}
+
+export interface AuthProps extends BaseAuth {
+  appearance?: BaseAppearance
 }
 
 export type AuthProvider =
