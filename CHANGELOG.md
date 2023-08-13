@@ -1,3 +1,18 @@
+# [0.3.0](https://github.com/xiaoluoboding/auth-ui-vue/compare/v0.2.0...v0.3.0) (2023-08-13)
+
+
+### Bug Fixes
+
+* fix loading locales ([2233a33](https://github.com/xiaoluoboding/auth-ui-vue/commit/2233a336bb9ba9cb9cf8cb318c9c9b127941ee38))
+* fixed the types bug ([0c0a3b3](https://github.com/xiaoluoboding/auth-ui-vue/commit/0c0a3b368f571a6e99ad007c8ae08c23c5fd1132))
+
+
+### Features
+
+* add i18n support ([0d8c5b8](https://github.com/xiaoluoboding/auth-ui-vue/commit/0d8c5b8587743e9855d5e45dc4939305352a5def))
+
+
+
 # [0.2.0](https://github.com/xiaoluoboding/auth-ui-vue/compare/v0.1.0...v0.2.0) (2023-08-13)
 
 
