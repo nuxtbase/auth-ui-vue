@@ -8,8 +8,8 @@
   >
     <SocialAuth
       v-if="isSignView"
-      :appearance="appearance"
       :supabaseClient="supabaseClient"
+      :appearance="appearance"
       :providers="providers"
       :providerScopes="providerScopes"
       :queryParams="queryParams"
@@ -21,7 +21,7 @@
     <template v-if="!onlyThirdPartyProviders">
       <EmailAuth
         v-if="authView === 'sign_in' || authView === 'sign_up'"
-        :supabase-client="supabaseClient"
+        :supabaseClient="supabaseClient"
         :appearance="appearance"
         :redirectTo="redirectTo"
         :magicLink="magicLink"
@@ -31,7 +31,7 @@
       />
       <MagicLink
         v-if="authView === 'magic_link'"
-        :supabase-client="supabaseClient"
+        :supabaseClient="supabaseClient"
         :appearance="appearance"
         :redirectTo="redirectTo"
         :showLinks="showLinks"
@@ -42,7 +42,7 @@
   <template v-else>
     <ForgottenPassword
       v-if="authView === 'forgotten_password'"
-      :supabase-client="supabaseClient"
+      :supabaseClient="supabaseClient"
       :appearance="appearance"
       :redirectTo="redirectTo"
       :showLinks="showLinks"
@@ -50,13 +50,13 @@
     />
     <UpdatePassword
       v-if="authView === 'update_password'"
-      :supabase-client="supabaseClient"
+      :supabaseClient="supabaseClient"
       :appearance="appearance"
       :i18n="i18n"
     />
     <VerifyOtp
       v-if="authView === 'verify_otp'"
-      :supabase-client="supabaseClient"
+      :supabaseClient="supabaseClient"
       :appearance="appearance"
       :otpType="otpType"
       :i18n="i18n"

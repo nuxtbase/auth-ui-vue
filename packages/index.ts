@@ -1,7 +1,29 @@
 import type { Plugin } from 'vue'
-import { Auth, UserContextProvider, useSupabaseUser } from './component'
+import {
+  Auth,
+  ForgottenPassword,
+  UpdatePassword,
+  MagicLink,
+  UserContextProvider,
+  useSupabaseUser
+} from './component'
+import { injectStrict } from './utils'
+import type {
+  UserContextProviderInjection,
+  UserContextProviderKey
+} from './types'
 
-export { Auth, UserContextProvider, useSupabaseUser }
+export {
+  Auth,
+  ForgottenPassword,
+  UpdatePassword,
+  MagicLink,
+  injectStrict,
+  UserContextProvider,
+  useSupabaseUser,
+  UserContextProviderInjection,
+  UserContextProviderKey
+}
 
 const plugin: Plugin = {
   install(app) {

@@ -56,7 +56,7 @@
                     }
                   }
                 }"
-                :supabase-client="supabaseClient"
+                :supabaseClient="supabaseClient"
                 :view="view.id"
                 :providers="['github', 'google', 'twitter']"
                 :socialLayout="socialLayout"
@@ -73,7 +73,7 @@
       </section>
       <section class="col-span-12 md:col-span-5 lg:col-span-6">
         <div class="container mx-auto max-w-full sm:max-w-2xl relative">
-          <UserContextProvider :supabase-client="supabaseClient">
+          <UserContextProvider :supabaseClient="supabaseClient">
             <Hero />
           </UserContextProvider>
 
