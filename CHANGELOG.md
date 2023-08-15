@@ -1,3 +1,12 @@
+## [0.3.1](https://github.com/xiaoluoboding/auth-ui-vue/compare/v0.3.0...v0.3.1) (2023-08-15)
+
+
+### Features
+
+* export more components and helpers ([fdee7ac](https://github.com/xiaoluoboding/auth-ui-vue/commit/fdee7ac0c164958de30054eee790eb17417a6fd7))
+
+
+
 # [0.3.0](https://github.com/xiaoluoboding/auth-ui-vue/compare/v0.2.0...v0.3.0) (2023-08-13)
 
 
