@@ -24,6 +24,33 @@
 
 Customizable authentication UI component with custom themes and extensible styles to match your brand and aesthetic.
 
+## Table of Contents
+
+- [Auth UI Vue](#auth-ui-vue)
+  - [Preview](#preview)
+  - [Introduction](#introduction)
+  - [Table of Contents](#table-of-contents)
+  - [Usage](#usage)
+    - [For Vue 3](#for-vue-3)
+    - [For Nuxt 3](#for-nuxt-3)
+  - [Set up Auth UI](#set-up-auth-ui)
+    - [Social Providers](#social-providers)
+    - [Options](#options)
+    - [Supported Views](#supported-views)
+  - [Customization](#customization)
+    - [Predefined themes](#predefined-themes)
+    - [Switch theme variations](#switch-theme-variations)
+    - [Override themes](#override-themes)
+    - [Create your own theme](#create-your-own-theme)
+    - [Custom CSS classes](#custom-css-classes)
+    - [Custom inline CSS](#custom-inline-css)
+    - [Custom lables (i18n)](#custom-lables-i18n)
+  - [Auth Helpers](#auth-helpers)
+    - [UserContextProvider](#usercontextprovider)
+    - [useSupabaseUser](#usesupabaseuser)
+  - [Inspiration](#inspiration)
+  - [License](#license)
+
 ## Usage
 
 ### For Vue 3
