@@ -18,6 +18,13 @@
             >
               <ri:translate-2 class="w-5 h-5" />
             </div>
+            <a
+              class="cursor-pointer hover:bg-neutral-200 hover:dark:bg-neutral-700 p-2 rounded-md"
+              href="https://github.com/nuxtbase/auth-ui-vue"
+              target="_blank"
+            >
+              <ri:github-fill class="w-5 h-5" />
+            </a>
           </div>
         </h3>
         <p className="text-secondary !mb-0">
