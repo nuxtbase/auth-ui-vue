@@ -8,10 +8,8 @@ import {
   useSupabaseUser
 } from './component'
 import { injectStrict } from './utils'
-import type {
-  UserContextProviderInjection,
-  UserContextProviderKey
-} from './types'
+import type { UserContextProviderInjection } from './types'
+import { UserContextProviderKey } from './types'
 
 export {
   Auth,
