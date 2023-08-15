@@ -9,7 +9,7 @@
         class="relative col-span-12 mb-16 md:col-span-7 md:mb-0 lg:col-span-6"
       >
         <div
-          class="relative lg:mx-auto lg:max-w-md 2xl:max-w-md bg-white dark:bg-neutral-800"
+          class="relative lg:mx-auto lg:max-w-md 2xl:max-w-md bg-white dark:bg-neutral-800 rounded-2xl"
         >
           <div
             :class="classes[brandColor]"
