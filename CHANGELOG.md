@@ -1,9 +1,18 @@
+## [0.3.2](https://github.com/xiaoluoboding/auth-ui-vue/compare/v0.3.1...v0.3.2) (2023-08-15)
+
+
+### Bug Fixes
+
+* fixed the type ([36a4356](https://github.com/xiaoluoboding/auth-ui-vue/commit/36a43562f52a41578c6883fc73fd63fd446fb27f))
+
+
+
 ## [0.3.1](https://github.com/xiaoluoboding/auth-ui-vue/compare/v0.3.0...v0.3.1) (2023-08-15)
 
 
 ### Features
 
-* export more components and helpers ([fdee7ac](https://github.com/xiaoluoboding/auth-ui-vue/commit/fdee7ac0c164958de30054eee790eb17417a6fd7))
+* export more components and helpers ([20cade3](https://github.com/xiaoluoboding/auth-ui-vue/commit/20cade3c101bb62ceafa1c8c2442188d3d374e02))
 
 
 
