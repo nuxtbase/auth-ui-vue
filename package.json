@@ -28,6 +28,10 @@
       "require": "./lib/auth-ui-vue.umd.cjs"
     }
   },
+  "license": "MIT",
+  "keywords": [
+    "Supabase", "Nuxt", "Vue", "Auth"
+  ],
   "sideEffects": [
     "**/*.css"
   ],

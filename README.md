@@ -16,7 +16,7 @@
 
 ## Preview
 
-![Auth UI Vue](/public/preview.png)
+https://user-images.githubusercontent.com/6118824/260960744-03a20835-76bc-4541-87ac-2e23277b7200.mp4
 
 ## Introduction
 
@@ -115,9 +115,11 @@ export default defineNuxtConfig({
 })
 ```
 
+Add `SUPABASE_URL` and `SUPABASE_KEY` to the .env:
+
 ```bash
-SUPABASE_URL="https://example.supabase.co"
-SUPABASE_KEY="<your_key>"
+SUPABASE_URL="<INSERT PROJECT URL>"
+SUPABASE_KEY="<INSERT PROJECT ANON API KEY>"
 ```
 
 Now, you can access the [supabase client](https://supabase.com/docs/reference/javascript/initializing) everywhere inside your vue components.
