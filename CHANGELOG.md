@@ -1,3 +1,17 @@
+## [0.3.3](https://github.com/xiaoluoboding/auth-ui-vue/compare/v0.3.2...v0.3.3) (2023-08-16)
+
+
+### Bug Fixes
+
+* fixed the sign in error message bug ([124b221](https://github.com/xiaoluoboding/auth-ui-vue/commit/124b221ea9a1bd7e693c275b38349da7d1b87ceb))
+
+
+### Features
+
+* receive a new user state every time an auth event happens ([a297c62](https://github.com/xiaoluoboding/auth-ui-vue/commit/a297c620f4120ae99052212178cda6e9cc8098d7))
+
+
+
 ## [0.3.2](https://github.com/xiaoluoboding/auth-ui-vue/compare/v0.3.1...v0.3.2) (2023-08-15)
 
 
