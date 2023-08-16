@@ -101,7 +101,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 import { SupabaseClient } from '@supabase/supabase-js'
 import { I18nVariables, RedirectTo, VIEWS } from '@supabase/auth-ui-shared'
 
@@ -136,18 +136,22 @@ const labels = computed(
 )
 const handleSubmit = async (e: Event) => {
   // console.log(props)
+  error.value = ''
+  message.value = ''
   isLoading.value = true
   switch (authView.value) {
     case 'sign_in':
-      const { error: signInError } =
-        await props.supabaseClient.auth.signInWithPassword({
-          email: email.value,
-          password: password.value
-        })
+      const {
+        // data: { user: signInUser, session: signInSession },
+        error: signInError
+      } = await props.supabaseClient.auth.signInWithPassword({
+        email: email.value,
+        password: password.value
+      })
       if (signInError) {
         error.value = signInError.message
-        isLoading.value = false
       }
+      isLoading.value = false
       break
     case 'sign_up':
       let options: { emailRedirectTo: RedirectTo; data?: object } = {
@@ -172,4 +176,11 @@ const handleSubmit = async (e: Event) => {
       break
   }
 }
+
+watch(
+  () => authView.value,
+  () => {
+    isLoading.value = false
+  }
+)
 </script>

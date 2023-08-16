@@ -10,7 +10,6 @@ const locale = storage.value?.apperance?.language
 const localesMap = Object.fromEntries(
   Object.entries(import.meta.glob('../locales/*.yml')).map(
     ([path, loadLocale]) => {
-      console.log(path)
       return [path.match(/([\w-]*)\.yml$/)?.[1], loadLocale]
     }
   )

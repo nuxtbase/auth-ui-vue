@@ -85,6 +85,7 @@ const labels = computed(
 )
 
 const handleProviderSignIn = async (provider: Provider) => {
+  error.value = ''
   isLoading.value = true
   const { error: err } = await props.supabaseClient.auth.signInWithOAuth({
     provider,

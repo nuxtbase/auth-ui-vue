@@ -1,7 +1,7 @@
 <template>
   <form
     :id="`auth-${authView}`"
-    @submit.prevent="handleMagicLinkSignIn"
+    @submit.prevent="handleSubmit"
     autoComplete="on"
     :style="{
       width: '100%'
@@ -82,7 +82,7 @@ const labels = computed(
   () => props.i18n?.[authView.value] as I18nVariables['magic_link']
 )
 
-const handleMagicLinkSignIn = async (e: Event) => {
+const handleSubmit = async (e: Event) => {
   // console.log(props)
   error.value = ''
   message.value = ''
