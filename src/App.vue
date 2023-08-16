@@ -1,9 +1,9 @@
 <template>
   <div
-    class="bg-neutral-50 dark:bg-neutral-900 px-4 min-h-screen flex-center flex-col"
+    class="bg-neutral-50 dark:bg-neutral-900 lg:px-4 min-h-screen flex-center flex-col"
   >
     <main
-      class="sm:py-18 gap-8 container relative mx-auto grid grid-cols-12 px-6 py-16 md:gap-16 md:py-24 lg:gap-16 lg:px-16 lg:py-24 xl:px-20"
+      class="sm:py-18 sm:gap-8 container relative mx-auto grid grid-cols-12 px-6 py-16 md:gap-16 md:py-24 lg:gap-16 lg:px-16 lg:py-24 xl:px-20"
     >
       <section
         class="relative col-span-12 mb-16 md:col-span-7 md:mb-0 lg:col-span-6"
