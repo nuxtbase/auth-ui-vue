@@ -1,0 +1,4 @@
+hello: 'مرحبًا، {name}!'
+language: 'اللغة'
+menu:
+  home: 'الرئيسية'

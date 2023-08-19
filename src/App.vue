@@ -1,4 +1,5 @@
 <template>
+  <!-- TODO: Add rtl support -->
   <div
     class="bg-neutral-50 dark:bg-neutral-900 lg:px-4 min-h-screen flex-center flex-col"
   >
@@ -176,20 +177,20 @@
 </template>
 
 <script lang="ts" setup>
+import { ThemeSupa, ViewType } from '@supabase/auth-ui-shared'
+import { createClient } from '@supabase/supabase-js'
 import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { ThemeSupa, ThemeMinimal, ViewType } from '@supabase/auth-ui-shared'
-import { createClient } from '@supabase/supabase-js'
 
-import { isDark } from '~/composables/useDarkmode'
-import { useLanguage } from './composables/useLanguage'
-import { useSEOHeader } from '~/composables/useSEOHeader'
 import Auth from '@/auth/Auth.vue'
-import IconMenu from './components/IconMenu.vue'
-import IconPalette from './components/IconPalette.vue'
 import UserContextProvider, {
   useSupabaseUser
 } from '@/auth/UserContextProvider'
+import { isDark } from '~/composables/useDarkmode'
+import { useSEOHeader } from '~/composables/useSEOHeader'
+import IconMenu from './components/IconMenu.vue'
+import IconPalette from './components/IconPalette.vue'
+import { useLanguage } from './composables/useLanguage'
 
 const supabaseClient = createClient(
   import.meta.env.VITE_SUPABASE_URL,
@@ -199,7 +200,7 @@ const supabaseClient = createClient(
 useSEOHeader()
 const { supabaseUser } = useSupabaseUser(supabaseClient)
 const { locale } = useI18n()
-const { en, zh } = useLanguage()
+const { en, zh, ar } = useLanguage()
 
 const classes: { [key: string]: string } = {
   'rgb(16, 185, 129)': 'container-greenshadow',
@@ -238,7 +239,7 @@ const backgroundColor = computed(() => {
   return brandColor.value.replace('rgb', 'rgba').replace(')', `, ${opacity})`)
 })
 const theme = computed(() => (isDark.value ? 'dark' : 'default'))
-const I18nVariables = computed(() => (locale.value === 'en-US' ? en : zh))
+const I18nVariables = computed(() => (locale.value === 'en-US' ? en : zh)) // TODO: add ar
 watch(
   () => supabaseUser.value,
   (newUser) => {
