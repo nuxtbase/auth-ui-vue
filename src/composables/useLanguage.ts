@@ -10,7 +10,7 @@ const sign_up = {
   email_input_placeholder: '请输入邮箱地址',
   password_input_placeholder: '请输入密码',
   button_label: '注册',
-  loading_button_label: '登录中...',
+  loading_button_label: '注册中...',
   social_provider_text: '通过 {{provider}} 继续',
   link_text: '还没有账号？ 注册',
   confirmation_text: '请查看您的电子邮件以获取确认链接'
