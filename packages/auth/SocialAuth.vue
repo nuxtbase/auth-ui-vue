@@ -18,8 +18,8 @@
             </template>
             <template v-if="verticalSocialLayout">
               {{
-                template(labels?.social_provider_text as string, {
-                  provider: capitalize(provider)
+                template(labels?.social_provider_text?.replace('_oidc', '') as string, {
+                  provider: capitalize(provider.replace('_oidc', ''))
                 })
               }}
             </template>
