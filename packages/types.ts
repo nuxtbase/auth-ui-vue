@@ -74,6 +74,7 @@ export type AuthProvider =
   | 'azure'
   | 'keycloak'
   | 'linkedin'
+  | 'linkedin_oidc'
   | 'notion'
   | 'slack'
   | 'spotify'

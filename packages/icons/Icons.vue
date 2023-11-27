@@ -17,6 +17,7 @@ import discord from './IconDiscord.vue'
 import azure from './IconAzure.vue'
 import keycloak from './IconKeycloak.vue'
 import linkedin from './IconLinkedin.vue'
+import linkedin_oidc from './IconLinkedin.vue'
 import notion from './IconNotion.vue'
 import slack from './IconSlack.vue'
 import spotify from './IconSpotify.vue'
@@ -37,6 +38,7 @@ const providers: Partial<ProviderMap> = {
   azure,
   keycloak,
   linkedin,
+  linkedin_oidc,
   notion,
   slack,
   spotify,
