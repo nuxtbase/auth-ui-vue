@@ -1,3 +1,12 @@
+## [0.3.4](https://github.com/xiaoluoboding/auth-ui-vue/compare/v0.3.3...v0.3.4) (2023-11-27)
+
+
+### Features
+
+* add providers ([8057b0f](https://github.com/xiaoluoboding/auth-ui-vue/commit/8057b0ffaff3c9aafa7a38dedd289a50aeb94ced))
+
+
+
 ## [0.3.3](https://github.com/xiaoluoboding/auth-ui-vue/compare/v0.3.2...v0.3.3) (2023-08-16)
 
 
