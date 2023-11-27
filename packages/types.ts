@@ -63,15 +63,16 @@ export interface AuthProps extends BaseAuth {
 }
 
 export type AuthProvider =
-  | 'google'
-  | 'facebook'
-  | 'twitter'
   | 'apple'
-  | 'github'
-  | 'gitlab'
+  | 'azure'
   | 'bitbucket'
   | 'discord'
-  | 'azure'
+  | 'facebook'
+  | 'figma'
+  | 'github'
+  | 'gitlab'
+  | 'google'
+  | 'kakao'
   | 'keycloak'
   | 'linkedin'
   | 'linkedin_oidc'
@@ -79,7 +80,9 @@ export type AuthProvider =
   | 'slack'
   | 'spotify'
   | 'twitch'
+  | 'twitter'
   | 'workos'
+  | 'zoom'
 
 export interface AuthViewInjection {
   authView: Ref<ViewType>
