@@ -170,8 +170,10 @@ const handleSubmit = async (e: Event) => {
       })
       if (signUpError) error.value = signUpError.message
       // Check if session is null -> email confirmation setting is turned on
-      else if (signUpUser && !signUpSession)
+      else if (signUpUser && !signUpSession) {
         message.value = props.i18n?.sign_up?.confirmation_text as string
+      }
+      isLoading.value = false
     default:
       break
   }
