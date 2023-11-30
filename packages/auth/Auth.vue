@@ -44,7 +44,7 @@
       v-if="authView === 'forgotten_password'"
       :supabaseClient="supabaseClient"
       :appearance="appearance"
-      :redirectTo="redirectTo"
+      :redirectTo="passwordResetRedirectTo ?? redirectTo"
       :showLinks="showLinks"
       :i18n="i18n"
     />

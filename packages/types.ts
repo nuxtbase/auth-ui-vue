@@ -38,6 +38,7 @@ interface BaseAuth {
   }
   view?: ViewType
   redirectTo?: RedirectTo
+  passwordResetRedirectTo?: RedirectTo
   onlyThirdPartyProviders?: boolean
   magicLink?: boolean
   showLinks?: boolean
