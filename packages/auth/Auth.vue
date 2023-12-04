@@ -90,8 +90,13 @@ const props = withDefaults(defineProps<AuthProps>(), {
   otpType: 'email'
 })
 
+const emit = defineEmits(['update:view'])
+
 const authView = ref<ViewType>(props.view)
-const setAuthView = (newView: ViewType) => (authView.value = newView)
+const setAuthView = (newView: ViewType) => {
+  emit('update:view', newView)
+  authView.value = newView
+}
 
 provide(AuthViewKey, {
   authView,

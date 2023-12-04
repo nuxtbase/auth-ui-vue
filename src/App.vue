@@ -57,7 +57,7 @@
                   }
                 }"
                 :supabaseClient="supabaseClient"
-                :view="view.id"
+                v-model:view="view"
                 :providers="['github', 'google', 'twitter']"
                 :socialLayout="socialLayout"
                 :theme="theme"
@@ -154,11 +154,10 @@
                       v-for="v in views"
                       :key="v.id"
                       :value="v.id"
-                      @click.prevent="view = v"
+                      @click.prevent="view = v.id"
                       class="text-white border-0 py-2 px-6 focus:outline-none rounded text-sm"
                       :style="{
-                        background:
-                          view.id === v.id ? brandColor : backgroundColor
+                        background: view === v.id ? brandColor : backgroundColor
                       }"
                     >
                       {{ v.title }}
@@ -194,6 +193,11 @@ import UserContextProvider, {
 const supabaseClient = createClient(
   import.meta.env.VITE_SUPABASE_URL,
   import.meta.env.VITE_SUPABASE_ANON_KEY
+  // {
+  //   auth: {
+  //     debug: true
+  //   }
+  // }
 )
 
 useSEOHeader()
@@ -231,7 +235,7 @@ const views: { id: ViewType; title: string }[] = [
 const brandColor = ref(colors[0])
 const borderRadius = ref(radii[0])
 const socialLayout = ref(socialAlignments[0])
-const view = ref(views[0])
+const view = ref(views[0].id)
 
 const backgroundColor = computed(() => {
   const opacity = isDark.value ? '.2' : '.48'

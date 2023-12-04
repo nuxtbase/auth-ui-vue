@@ -211,6 +211,27 @@ The Auth component is currently shipped with the following views:
 - [Update password](https://supabase.com/docs/guides/auth/auth-password-reset#update-password)
 - [Forgotten password](https://supabase.com/docs/guides/auth/auth-password-reset#sending-password-reset-email)
 
+```html
+<template>
+  ...
+  <Auth
+    :supabaseClient="supabaseClient"
+    :providers="['google']"
+    v-model:view="authView"
+    :redirectTo="redirectTo"
+  />
+  ...
+</tempalte>
+
+<script setup lang="ts">
+const authView = ref('sign_in')
+
+const redirectTo = computed(() => {
+  return authView === 'forgotten_password' ? FORGOTTEN_PASSWORD_URL : REDIRECT_TO_URL
+})
+</script>
+```
+
 We are planning on adding more views in the future. Follow along on this repo.
 
 ## Customization

@@ -18,9 +18,12 @@
             </template>
             <template v-if="verticalSocialLayout">
               {{
-                template(labels?.social_provider_text?.replace('_oidc', '') as string, {
-                  provider: capitalize(provider.replace('_oidc', ''))
-                })
+                template(
+                  labels?.social_provider_text?.replace('_oidc', '') as string,
+                  {
+                    provider: capitalize(provider.replace('_oidc', ''))
+                  }
+                )
               }}
             </template>
           </Button>
@@ -87,7 +90,7 @@ const labels = computed(
 const handleProviderSignIn = async (provider: Provider) => {
   error.value = ''
   isLoading.value = true
-  const { error: err } = await props.supabaseClient.auth.signInWithOAuth({
+  const { data, error: err } = await props.supabaseClient.auth.signInWithOAuth({
     provider,
     options: {
       redirectTo: props.redirectTo,
@@ -95,6 +98,7 @@ const handleProviderSignIn = async (provider: Provider) => {
       queryParams: props.queryParams
     }
   })
+  // console.log(data)
   if (err) error.value = err.message
   isLoading.value = false
 }
