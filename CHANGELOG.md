@@ -1,3 +1,12 @@
+## [0.3.5](https://github.com/xiaoluoboding/auth-ui-vue/compare/v0.3.4...v0.3.5) (2023-12-04)
+
+
+### Features
+
+* make the auth view reactivity ([d8b4d84](https://github.com/xiaoluoboding/auth-ui-vue/commit/d8b4d8476a0e34db00546e3ddd2f38469b1ba367))
+
+
+
 ## [0.3.4](https://github.com/xiaoluoboding/auth-ui-vue/compare/v0.3.3...v0.3.4) (2023-11-27)
 
 
