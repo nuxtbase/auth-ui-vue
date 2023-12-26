@@ -39,7 +39,9 @@ export interface MessageProps {
   appearance?: Appearance
 }
 
-const props = withDefaults(defineProps<MessageProps>(), {})
+const props = withDefaults(defineProps<MessageProps>(), {
+  color: 'default'
+})
 const attrs = useAttrs()
 
 const classNames = computed(() => {
