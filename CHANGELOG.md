@@ -1,3 +1,13 @@
+## [0.3.6](https://github.com/xiaoluoboding/auth-ui-vue/compare/v0.3.5...v0.3.6) (2023-12-26)
+
+
+### Bug Fixes
+
+* fixed [#10](https://github.com/xiaoluoboding/auth-ui-vue/issues/10) ([8be7e03](https://github.com/xiaoluoboding/auth-ui-vue/commit/8be7e03f0f68414fc4ed3df6d6a1e0ce12f4f0b3))
+* fixed the build ([9ecd55c](https://github.com/xiaoluoboding/auth-ui-vue/commit/9ecd55caf04e86870ba47596ba020b56bc67c7ec))
+
+
+
 ## [0.3.5](https://github.com/xiaoluoboding/auth-ui-vue/compare/v0.3.4...v0.3.5) (2023-12-04)
 
 
