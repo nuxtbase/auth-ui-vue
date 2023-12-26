@@ -227,7 +227,7 @@ The Auth component is currently shipped with the following views:
 const authView = ref('sign_in')
 
 const redirectTo = computed(() => {
-  return authView === 'forgotten_password' ? FORGOTTEN_PASSWORD_URL : REDIRECT_TO_URL
+  return authView.value === 'forgotten_password' ? FORGOTTEN_PASSWORD_URL : REDIRECT_TO_URL
 })
 </script>
 ```

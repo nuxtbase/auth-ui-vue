@@ -65,6 +65,7 @@
                 :localization="{
                   variables: I18nVariables
                 }"
+                :redirect-to="redirectTo"
                 show-links
               />
             </div>
@@ -199,6 +200,7 @@ const supabaseClient = createClient(
   //   }
   // }
 )
+const SITE_URL = import.meta.env.VITE_SITE_URL
 
 useSEOHeader()
 const { supabaseUser } = useSupabaseUser(supabaseClient)
@@ -243,6 +245,12 @@ const backgroundColor = computed(() => {
 })
 const theme = computed(() => (isDark.value ? 'dark' : 'default'))
 const I18nVariables = computed(() => (locale.value === 'en-US' ? en : zh))
+const redirectTo = computed(() => {
+  return view.value === 'forgotten_password'
+    ? `${SITE_URL}/reset-password`
+    : SITE_URL
+})
+
 watch(
   () => supabaseUser.value,
   (newUser) => {
