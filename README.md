@@ -3,7 +3,6 @@
 [![NPM][npmBadge]][npmUrl]
 [![Minzip Package][bundlePhobiaBadge]][bundlePhobiaUrl]
 [![NPM Download][npmDtBadge]][npmDtUrl]
-[![Netlify Status](https://api.netlify.com/api/v1/badges/a855cf9a-2ec2-448a-a6a4-9661815bcb97/deploy-status)](https://app.netlify.com/sites/auth-ui-vue/deploys)
 
 [npmBadge]: https://img.shields.io/npm/v/@nuxtbase/auth-ui-vue.svg?maxAge=2592000
 [npmUrl]: https://www.npmjs.com/package/@nuxtbase/auth-ui-vue
