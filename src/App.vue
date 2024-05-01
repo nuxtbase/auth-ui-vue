@@ -163,6 +163,22 @@
                     >
                       {{ v.title }}
                     </button>
+                    <button
+                      @click.prevent="createAnonymousUser"
+                      class="text-white border-0 py-2 px-6 focus:outline-none rounded text-sm"
+                      :style="{
+                        background: brandColor
+                      }">
+                        Anonymous
+                    </button>
+                    <span v-if="isAnonymous">
+                      <button 
+                        @click.prevent="signOut"
+                        class="text-white border-0 py-2 px-6 focus:outline-none rounded text-sm" :style="{ background: brandColor }">
+                        Sign Out
+                      </button>
+                      Anonymous id: {{ supabaseUser?.id }}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -250,6 +266,17 @@ const redirectTo = computed(() => {
     ? `${SITE_URL}/reset-password`
     : SITE_URL
 })
+
+const isAnonymous = computed(() => supabaseUser.value?.is_anonymous)
+
+function createAnonymousUser() {
+  supabaseClient.auth.signInAnonymously()
+}
+
+function signOut() {
+  supabaseClient.auth.signOut()
+  supabaseUser.value = null
+}
 
 watch(
   () => supabaseUser.value,

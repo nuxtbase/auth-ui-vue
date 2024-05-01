@@ -60,6 +60,7 @@ import { I18nVariables, RedirectTo, VIEWS } from '@supabase/auth-ui-shared'
 import { AuthViewKey, type Appearance, type AuthViewInjection } from '../types'
 import { Anchor, Button, Container, Input, Label, Message } from '../ui/index'
 import { injectStrict } from '../utils'
+import { useSupabaseUser } from './UserContextProvider'
 
 export interface MagicLinkProps {
   appearance?: Appearance
@@ -70,6 +71,8 @@ export interface MagicLinkProps {
 }
 
 const props = withDefaults(defineProps<MagicLinkProps>(), {})
+
+const { supabaseUser } = useSupabaseUser(props.supabaseClient)
 
 const email = ref('')
 const error = ref('')
@@ -87,10 +90,23 @@ const handleSubmit = async (e: Event) => {
   error.value = ''
   message.value = ''
   isLoading.value = true
-  const { error: signInError } = await props.supabaseClient.auth.signInWithOtp({
-    email: email.value,
-    options: { emailRedirectTo: props.redirectTo }
-  })
+  const isAnonymous = supabaseUser.value?.is_anonymous
+  let signInError: Error | null = null
+  if (isAnonymous) {
+    const { error: err } = await props.supabaseClient.auth.updateUser({
+      email: email.value 
+    }, {
+      emailRedirectTo: props.redirectTo
+    })
+    signInError = err
+  } else {
+    const { error: err } = await props.supabaseClient.auth.signInWithOtp({
+      email: email.value,
+      options: { emailRedirectTo: props.redirectTo }
+    })
+    signInError = err
+  }
+
   if (signInError) {
     error.value = signInError.message
   } else {

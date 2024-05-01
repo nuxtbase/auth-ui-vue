@@ -48,6 +48,7 @@ import { Appearance, AuthViewInjection, AuthViewKey } from '../types'
 import { Divider, Button, Container } from '@/ui'
 import { Icons } from '@/icons'
 import { injectStrict } from '../utils'
+import { useSupabaseUser } from './UserContextProvider'
 
 type RedirectTo = undefined | string
 
@@ -71,6 +72,8 @@ const props = withDefaults(defineProps<SocialAuthProps>(), {
   view: 'sign_in'
 })
 
+const { supabaseUser } = useSupabaseUser(props.supabaseClient)
+
 const error = ref('')
 const isLoading = ref(false)
 const { authView } = injectStrict<AuthViewInjection>(AuthViewKey)
@@ -90,16 +93,32 @@ const labels = computed(
 const handleProviderSignIn = async (provider: Provider) => {
   error.value = ''
   isLoading.value = true
-  const { data, error: err } = await props.supabaseClient.auth.signInWithOAuth({
-    provider,
-    options: {
-      redirectTo: props.redirectTo,
-      scopes: props.providerScopes?.[provider],
-      queryParams: props.queryParams
-    }
-  })
+
+  const isAnonymous = supabaseUser.value?.is_anonymous
+  const options = {
+    redirectTo: props.redirectTo,
+    scopes: props.providerScopes?.[provider],
+    queryParams: props.queryParams
+  }
+  
+  let signInError: Error | null = null
+  
+  if (isAnonymous) {
+    const { data, error: err } = await props.supabaseClient.auth.linkIdentity({
+      provider,
+      options
+    })
+    signInError = err
+  } else {
+    const { data, error: err } = await props.supabaseClient.auth.signInWithOAuth({
+      provider,
+      options
+    })
+    signInError = err
+  }
+
   // console.log(data)
-  if (err) error.value = err.message
+  if (signInError) error.value = signInError.message
   isLoading.value = false
 }
 
