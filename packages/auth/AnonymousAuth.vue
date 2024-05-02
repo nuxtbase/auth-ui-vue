@@ -8,21 +8,6 @@
     }"
   >
     <Container direction="vertical" gap="large" :appearance="appearance">
-      <div>
-        <Label htmlFor="password_label" :appearance="appearance">
-          {{ labels?.password_label }}
-        </Label>
-        <Input
-          id="password"
-          type="password"
-          name="password"
-          autofocus
-          :placeholder="labels?.password_input_placeholder"
-          :appearance="appearance"
-          v-model="password"
-        />
-      </div>
-
       <Button
         type="submit"
         color="primary"
@@ -43,7 +28,11 @@
 
 <script lang="ts" setup>
 import { ref, computed } from 'vue'
-import { SupabaseClient } from '@supabase/supabase-js'
+import {
+  SignInAnonymouslyCredentials,
+  SupabaseClient
+} from '@supabase/supabase-js'
+import { RedirectTo } from '@supabase/auth-ui-shared'
 
 import {
   AuthViewKey,
@@ -51,26 +40,30 @@ import {
   type AuthViewInjection,
   type AuthI18nVariables
 } from '../types'
-import { Button, Container, Input, Label, Message } from '../ui/index'
+import { Button, Container, Message } from '../ui/index'
 import { injectStrict } from '../utils'
+import { useSupabaseUser } from './UserContextProvider'
 
-export interface UpdatePasswordProps {
+export interface AnonymousSignInProps {
   appearance?: Appearance
   supabaseClient: SupabaseClient
+  redirectTo?: RedirectTo
   i18n?: AuthI18nVariables
+  anonymouslyCredentials?: SignInAnonymouslyCredentials
 }
 
-const props = withDefaults(defineProps<UpdatePasswordProps>(), {})
+const props = withDefaults(defineProps<AnonymousSignInProps>(), {})
 
-const password = ref('')
+const { supabaseUser } = useSupabaseUser(props.supabaseClient)
+
 const error = ref('')
 const message = ref('')
 const isLoading = ref(false)
 
-const { authView } = injectStrict<AuthViewInjection>(AuthViewKey)
+const { authView, setAuthView } = injectStrict<AuthViewInjection>(AuthViewKey)
 
 const labels = computed(
-  () => props.i18n?.[authView.value] as AuthI18nVariables['update_password']
+  () => props.i18n?.[authView.value] as AuthI18nVariables['anonymous_sign_in']
 )
 
 const handleSubmit = async (e: Event) => {
@@ -78,13 +71,17 @@ const handleSubmit = async (e: Event) => {
   error.value = ''
   message.value = ''
   isLoading.value = true
-  const { error: updateError } = await props.supabaseClient.auth.updateUser({
-    password: password.value
-  })
-  if (updateError) {
-    error.value = updateError.message
-  } else {
-    message.value = props.i18n?.update_password?.confirmation_text as string
+  let signInError: Error | null = null
+
+  const { data, error: err } =
+    await props.supabaseClient.auth.signInAnonymously(
+      props.anonymouslyCredentials
+    )
+
+  signInError = err
+
+  if (signInError) {
+    error.value = signInError.message
   }
   isLoading.value = false
 }

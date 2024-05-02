@@ -61,16 +61,23 @@
       :otpType="otpType"
       :i18n="i18n"
     />
+    <AnonymousAuth
+      v-if="authView === 'anonymous_sign_in'"
+      :supabaseClient="supabaseClient"
+      :appearance="appearance"
+      :i18n="i18n"
+      :anonymouslyCredentials="anonymouslyCredentials"
+    />
   </template>
 </template>
 
 <script lang="ts" setup>
 import { provide, ref, watch, computed } from 'vue'
-import { I18nVariables, ViewType, en, merge } from '@supabase/auth-ui-shared'
+import { I18nVariables, en, merge } from '@supabase/auth-ui-shared'
 import { createStitches } from '@stitches/core'
 import cloneDeep from 'lodash.clonedeep'
 
-import { AuthProps, AuthViewKey } from '../types'
+import { AuthProps, AuthViewKey, AuthViewType } from '../types'
 import SocialAuthContainer from './SocialAuthContainer.vue'
 import EmailAuth from './EmailAuth.vue'
 import SocialAuth from './SocialAuth.vue'
@@ -78,6 +85,7 @@ import MagicLink from './MagicLink.vue'
 import ForgottenPassword from './ForgottenPassword.vue'
 import UpdatePassword from './UpdatePassword.vue'
 import VerifyOtp from './VerifyOtp.vue'
+import AnonymousAuth from './AnonymousAuth.vue'
 
 const props = withDefaults(defineProps<AuthProps>(), {
   view: 'sign_in',
@@ -87,13 +95,14 @@ const props = withDefaults(defineProps<AuthProps>(), {
   showLinks: true,
   dark: false,
   theme: 'default',
-  otpType: 'email'
+  otpType: 'email',
+  anonymouslyCredentials: undefined
 })
 
 const emit = defineEmits(['update:view'])
 
-const authView = ref<ViewType>(props.view)
-const setAuthView = (newView: ViewType) => {
+const authView = ref<AuthViewType>(props.view)
+const setAuthView = (newView: AuthViewType) => {
   emit('update:view', newView)
   authView.value = newView
 }

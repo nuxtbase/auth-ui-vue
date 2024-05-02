@@ -55,9 +55,14 @@
 <script lang="ts" setup>
 import { ref, computed } from 'vue'
 import { SupabaseClient } from '@supabase/supabase-js'
-import { I18nVariables, RedirectTo, VIEWS } from '@supabase/auth-ui-shared'
+import { RedirectTo, VIEWS } from '@supabase/auth-ui-shared'
 
-import { AuthViewKey, type Appearance, type AuthViewInjection } from '../types'
+import {
+  AuthViewKey,
+  type Appearance,
+  type AuthViewInjection,
+  type AuthI18nVariables
+} from '../types'
 import { Anchor, Button, Container, Input, Label, Message } from '../ui/index'
 import { injectStrict } from '../utils'
 
@@ -66,7 +71,7 @@ export interface ForgottenPasswordProps {
   supabaseClient: SupabaseClient
   redirectTo?: RedirectTo
   showLinks?: boolean
-  i18n?: I18nVariables
+  i18n?: AuthI18nVariables
 }
 
 const props = withDefaults(defineProps<ForgottenPasswordProps>(), {})
@@ -79,7 +84,7 @@ const isLoading = ref(false)
 const { authView, setAuthView } = injectStrict<AuthViewInjection>(AuthViewKey)
 
 const labels = computed(
-  () => props.i18n?.[authView.value] as I18nVariables['forgotten_password']
+  () => props.i18n?.[authView.value] as AuthI18nVariables['forgotten_password']
 )
 
 const handleSubmit = async (e: Event) => {

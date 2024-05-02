@@ -103,9 +103,14 @@
 <script lang="ts" setup>
 import { ref, computed, watch } from 'vue'
 import { SupabaseClient } from '@supabase/supabase-js'
-import { I18nVariables, RedirectTo, VIEWS } from '@supabase/auth-ui-shared'
+import { RedirectTo, VIEWS } from '@supabase/auth-ui-shared'
 
-import { AuthViewKey, type Appearance, type AuthViewInjection } from '../types'
+import {
+  AuthViewKey,
+  type Appearance,
+  type AuthViewInjection,
+  type AuthI18nVariables
+} from '../types'
 import { Anchor, Button, Container, Input, Label, Message } from '../ui/index'
 import { injectStrict } from '../utils'
 
@@ -117,7 +122,7 @@ export interface EmailAuthProps {
   redirectTo?: RedirectTo
   magicLink?: boolean
   showLinks?: boolean
-  i18n?: I18nVariables
+  i18n?: AuthI18nVariables
   additionalData?: { [key: string]: any }
 }
 
@@ -132,7 +137,7 @@ const isLoading = ref(false)
 const { authView, setAuthView } = injectStrict<AuthViewInjection>(AuthViewKey)
 
 const labels = computed(
-  () => props.i18n?.[authView.value] as I18nVariables['sign_in' | 'sign_up']
+  () => props.i18n?.[authView.value] as AuthI18nVariables['sign_in' | 'sign_up']
 )
 const handleSubmit = async (e: Event) => {
   // console.log(props)

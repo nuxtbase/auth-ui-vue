@@ -38,13 +38,17 @@
 import { computed, ref } from 'vue'
 import { Provider, SupabaseClient } from '@supabase/supabase-js'
 import {
-  I18nVariables,
   ProviderScopes,
   SocialLayout,
   template
 } from '@supabase/auth-ui-shared'
 
-import { Appearance, AuthViewInjection, AuthViewKey } from '../types'
+import {
+  AuthViewKey,
+  type Appearance,
+  type AuthViewInjection,
+  type AuthI18nVariables
+} from '../types'
 import { Divider, Button, Container } from '@/ui'
 import { Icons } from '@/icons'
 import { injectStrict } from '../utils'
@@ -61,7 +65,7 @@ export interface SocialAuthProps {
   redirectTo?: RedirectTo
   onlyThirdPartyProviders?: boolean
   view?: 'sign_in' | 'sign_up' | 'magic_link'
-  i18n?: I18nVariables
+  i18n?: AuthI18nVariables
   appearance?: Appearance
 }
 
@@ -87,7 +91,8 @@ const currentView = computed(() => {
 })
 
 const labels = computed(
-  () => props.i18n?.[currentView.value] as I18nVariables['sign_in' | 'sign_up']
+  () =>
+    props.i18n?.[currentView.value] as AuthI18nVariables['sign_in' | 'sign_up']
 )
 
 const handleProviderSignIn = async (provider: Provider) => {
@@ -100,9 +105,9 @@ const handleProviderSignIn = async (provider: Provider) => {
     scopes: props.providerScopes?.[provider],
     queryParams: props.queryParams
   }
-  
+
   let signInError: Error | null = null
-  
+
   if (isAnonymous) {
     const { data, error: err } = await props.supabaseClient.auth.linkIdentity({
       provider,
@@ -110,10 +115,11 @@ const handleProviderSignIn = async (provider: Provider) => {
     })
     signInError = err
   } else {
-    const { data, error: err } = await props.supabaseClient.auth.signInWithOAuth({
-      provider,
-      options
-    })
+    const { data, error: err } =
+      await props.supabaseClient.auth.signInWithOAuth({
+        provider,
+        options
+      })
     signInError = err
   }
 

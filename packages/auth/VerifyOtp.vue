@@ -88,9 +88,14 @@ import {
   SupabaseClient,
   VerifyOtpParams
 } from '@supabase/supabase-js'
-import { I18nVariables, OtpType, VIEWS } from '@supabase/auth-ui-shared'
+import { OtpType, VIEWS } from '@supabase/auth-ui-shared'
 
-import { AuthViewKey, type Appearance, type AuthViewInjection } from '../types'
+import {
+  AuthViewKey,
+  type Appearance,
+  type AuthViewInjection,
+  type AuthI18nVariables
+} from '../types'
 import { Anchor, Button, Container, Input, Label, Message } from '../ui/index'
 import { injectStrict } from '../utils'
 
@@ -99,7 +104,7 @@ export interface VerifyOtpProps {
   supabaseClient: SupabaseClient
   otpType?: OtpType
   showLinks?: boolean
-  i18n?: I18nVariables
+  i18n?: AuthI18nVariables
 }
 
 const props = withDefaults(defineProps<VerifyOtpProps>(), {
@@ -117,7 +122,7 @@ const isLoading = ref(false)
 const { authView, setAuthView } = injectStrict<AuthViewInjection>(AuthViewKey)
 
 const labels = computed(
-  () => props.i18n?.[authView.value] as I18nVariables['verify_otp']
+  () => props.i18n?.[authView.value] as AuthI18nVariables['verify_otp']
 )
 
 const handleSubmit = async (e: Event) => {

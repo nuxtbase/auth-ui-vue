@@ -11,6 +11,7 @@ import type {
 import type {
   Provider,
   Session,
+  SignInAnonymouslyCredentials,
   SupabaseClient,
   User
 } from '@supabase/supabase-js'
@@ -28,6 +29,16 @@ export interface Appearance extends BaseAppearance {
   }
 }
 
+declare type ViewAnonymousSignIn = 'anonymous_sign_in'
+export type AuthViewType = ViewType | ViewAnonymousSignIn
+
+export interface AuthI18nVariables extends I18nVariables {
+  anonymous_sign_in?: {
+    button_label?: string
+    loading_button_label?: string
+  }
+}
+
 interface BaseAuth {
   supabaseClient: SupabaseClient
   socialLayout?: SocialLayout
@@ -36,7 +47,6 @@ interface BaseAuth {
   queryParams?: {
     [key: string]: string
   }
-  view?: ViewType
   redirectTo?: RedirectTo
   onlyThirdPartyProviders?: boolean
   magicLink?: boolean
@@ -49,17 +59,20 @@ interface BaseAuth {
    * This will toggle on the dark variation of the theme
    */
   dark?: boolean
-  /**
-   * Override the labels and button text
-   */
-  localization?: {
-    variables?: I18nVariables
-  }
   theme?: 'default' | string
 }
 
 export interface AuthProps extends BaseAuth {
   appearance?: Appearance
+  // add anonymous-signins view
+  view?: AuthViewType
+  /**
+   * Override the labels and button text
+   */
+  localization?: {
+    variables?: AuthI18nVariables
+  }
+  anonymouslyCredentials?: SignInAnonymouslyCredentials
 }
 
 export type AuthProvider =
@@ -85,8 +98,8 @@ export type AuthProvider =
   | 'zoom'
 
 export interface AuthViewInjection {
-  authView: Ref<ViewType>
-  setAuthView: (view: ViewType) => void
+  authView: Ref<AuthViewType>
+  setAuthView: (view: AuthViewType) => void
 }
 
 export interface UserContextProviderInjection {

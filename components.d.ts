@@ -7,19 +7,10 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    'Carbon:cafe': typeof import('~icons/carbon/cafe')['default']
-    'Carbon:logoTwitter': typeof import('~icons/carbon/logo-twitter')['default']
     Footer: typeof import('./src/components/Footer.vue')['default']
     Hero: typeof import('./src/components/Hero.vue')['default']
     IconMenu: typeof import('./src/components/IconMenu.vue')['default']
     IconPalette: typeof import('./src/components/IconPalette.vue')['default']
-    'Logos:nuxtIcon': typeof import('~icons/logos/nuxt-icon')['default']
-    'Logos:vue': typeof import('~icons/logos/vue')['default']
-    'Mdi:heart': typeof import('~icons/mdi/heart')['default']
-    'Ri:githubFill': typeof import('~icons/ri/github-fill')['default']
-    'Ri:moonLine': typeof import('~icons/ri/moon-line')['default']
-    'Ri:sunLine': typeof import('~icons/ri/sun-line')['default']
-    'Ri:translate2': typeof import('~icons/ri/translate2')['default']
     ToggleButton: typeof import('./src/components/ToggleButton.vue')['default']
   }
 }

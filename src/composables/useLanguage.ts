@@ -1,4 +1,4 @@
-import { en } from '@supabase/auth-ui-shared'
+import { en as enLocale } from '@supabase/auth-ui-shared'
 import { useI18n } from 'vue-i18n'
 import cloneDeep from 'lodash.clonedeep'
 
@@ -59,13 +59,28 @@ const verify_otp = {
   button_label: '验证密钥',
   loading_button_label: '登录中...'
 }
+const anonymous_sign_in = {
+  button_label: '以访客身份登录',
+  loading_button_label: '登录中...'
+}
 const zh = {
   sign_up: sign_up,
   sign_in: sign_in,
   magic_link: magic_link,
   forgotten_password: forgotten_password,
   update_password: update_password,
-  verify_otp: verify_otp
+  verify_otp: verify_otp,
+  anonymous_sign_in: anonymous_sign_in
+}
+
+const anonymous_sign_in_en = {
+  button_label: 'Login as Guest',
+  loading_button_label: 'Signing in ...'
+}
+
+const en = {
+  ...enLocale,
+  anonymous_sign_in: anonymous_sign_in_en
 }
 
 const useLanguage = () => {

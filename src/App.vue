@@ -17,6 +17,7 @@
           >
             <div
               class="border-neutral-400 bg-neutral-50 dark:bg-neutral-800 relative rounded-xl px-8 py-12 drop-shadow-sm"
+              v-if="!isLogged"
             >
               <div class="mb-6 flex flex-col gap-6">
                 <div class="flex items-center gap-3">
@@ -68,6 +69,37 @@
                 :redirect-to="redirectTo"
                 show-links
               />
+            </div>
+            <div
+              class="border-neutral-400 bg-neutral-50 dark:bg-neutral-800 relative rounded-xl px-8 py-12 drop-shadow-sm"
+              v-else
+            >
+              <div class="mb-6 flex flex-col gap-6">
+                <div class="flex items-center gap-3">
+                  <div
+                    class="w-10 rounded-full p-2"
+                    :style="{
+                      background: backgroundColor,
+                      color: brandColor
+                    }"
+                  >
+                    <IconPalette />
+                  </div>
+                  <h1 class="text-primary text-2xl">Welcome back</h1>
+                </div>
+                <p class="text-neutral-400 text-auth-widget-test">
+                  {{ isAnonymous ? supabaseUser?.id : supabaseUser?.email }}
+                </p>
+                <button
+                  @click.prevent="handleSignOut"
+                  class="text-white border-0 py-2 px-6 focus:outline-none rounded text-sm"
+                  :style="{
+                    background: brandColor
+                  }"
+                >
+                  Sign Out
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -163,22 +195,6 @@
                     >
                       {{ v.title }}
                     </button>
-                    <button
-                      @click.prevent="createAnonymousUser"
-                      class="text-white border-0 py-2 px-6 focus:outline-none rounded text-sm"
-                      :style="{
-                        background: brandColor
-                      }">
-                        Anonymous
-                    </button>
-                    <span v-if="isAnonymous">
-                      <button 
-                        @click.prevent="signOut"
-                        class="text-white border-0 py-2 px-6 focus:outline-none rounded text-sm" :style="{ background: brandColor }">
-                        Sign Out
-                      </button>
-                      Anonymous id: {{ supabaseUser?.id }}
-                    </span>
                   </div>
                 </div>
               </div>
@@ -194,13 +210,14 @@
 <script lang="ts" setup>
 import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { ThemeSupa, ThemeMinimal, ViewType } from '@supabase/auth-ui-shared'
+import { ThemeSupa } from '@supabase/auth-ui-shared'
 import { createClient } from '@supabase/supabase-js'
 
 import { isDark } from '~/composables/useDarkmode'
 import { useLanguage } from './composables/useLanguage'
 import { useSEOHeader } from '~/composables/useSEOHeader'
 import Auth from '@/auth/Auth.vue'
+import { AuthViewType } from '@/types'
 import IconMenu from './components/IconMenu.vue'
 import IconPalette from './components/IconPalette.vue'
 import UserContextProvider, {
@@ -241,13 +258,14 @@ const colors = [
 
 const socialAlignments = ['horizontal', 'vertical'] as const
 
-const views: { id: ViewType; title: string }[] = [
+const views: { id: AuthViewType; title: string }[] = [
   { id: 'sign_in', title: 'Sign In' },
   { id: 'sign_up', title: 'Sign Up' },
   { id: 'magic_link', title: 'Magic Link' },
   { id: 'forgotten_password', title: 'Forgotten Password' },
   { id: 'update_password', title: 'Update Password' },
-  { id: 'verify_otp', title: 'Verify Otp' }
+  { id: 'verify_otp', title: 'Verify Otp' },
+  { id: 'anonymous_sign_in', title: 'Anonymous Sign-ins' }
 ]
 
 const brandColor = ref(colors[0])
@@ -267,13 +285,10 @@ const redirectTo = computed(() => {
     : SITE_URL
 })
 
+const isLogged = computed(() => supabaseUser.value !== null)
 const isAnonymous = computed(() => supabaseUser.value?.is_anonymous)
 
-function createAnonymousUser() {
-  supabaseClient.auth.signInAnonymously()
-}
-
-function signOut() {
+const handleSignOut = () => {
   supabaseClient.auth.signOut()
   supabaseUser.value = null
 }
