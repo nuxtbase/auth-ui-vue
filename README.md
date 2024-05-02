@@ -36,6 +36,7 @@ Customizable authentication UI component with custom themes and extensible style
     - [Social Providers](#social-providers)
     - [Options](#options)
     - [Supported Views](#supported-views)
+    - [Anonymous User](#anonymous-user)
   - [Customization](#customization)
     - [Predefined themes](#predefined-themes)
     - [Switch theme variations](#switch-theme-variations)
@@ -229,9 +230,22 @@ const redirectTo = computed(() => {
   return authView.value === 'forgotten_password' ? FORGOTTEN_PASSWORD_URL : REDIRECT_TO_URL
 })
 </script>
+
+```
+### Anonymous User
+
+The Auth component is currently support [Anonymous user login](https://supabase.com/docs/guides/auth/auth-anonymous#sign-in-anonymously).
+For this you need to create an anonymous user 
+
+```js
+const { data, error } = await supabase.auth.signInAnonymously()
 ```
 
-We are planning on adding more views in the future. Follow along on this repo.
+[Enable manual linking](https://supabase.com/dashboard/project/_/settings/auth) in supabase
+
+Currently works for magic link and social login.
+If you use password login, you need user to update password after he 
+
 
 ## Customization
 
