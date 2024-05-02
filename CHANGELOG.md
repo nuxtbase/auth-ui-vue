@@ -1,3 +1,12 @@
+## [0.3.7](https://github.com/xiaoluoboding/auth-ui-vue/compare/v0.3.6...v0.3.7) (2024-05-02)
+
+
+### Features
+
+* add anonymous sign-ins ([6bbe538](https://github.com/xiaoluoboding/auth-ui-vue/commit/6bbe538012761072e02733e9e192b1cb0b330e38))
+
+
+
 ## [0.3.6](https://github.com/xiaoluoboding/auth-ui-vue/compare/v0.3.5...v0.3.6) (2023-12-26)
 
 

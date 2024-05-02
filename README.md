@@ -36,7 +36,7 @@ Customizable authentication UI component with custom themes and extensible style
     - [Social Providers](#social-providers)
     - [Options](#options)
     - [Supported Views](#supported-views)
-    - [Anonymous User](#anonymous-user)
+    - [Anonymous Sign-ins](#anonymous-sign-ins)
   - [Customization](#customization)
     - [Predefined themes](#predefined-themes)
     - [Switch theme variations](#switch-theme-variations)
@@ -210,6 +210,7 @@ The Auth component is currently shipped with the following views:
 - [Social Login](https://supabase.com/docs/guides/auth/social-login)
 - [Update password](https://supabase.com/docs/guides/auth/auth-password-reset#update-password)
 - [Forgotten password](https://supabase.com/docs/guides/auth/auth-password-reset#sending-password-reset-email)
+- [Anonymous Sign-ins](https://supabase.com/docs/guides/auth/auth-anonymous)
 
 ```html
 <template>
@@ -232,10 +233,11 @@ const redirectTo = computed(() => {
 </script>
 
 ```
-### Anonymous User
+
+### Anonymous Sign-ins
 
 The Auth component is currently support [Anonymous user login](https://supabase.com/docs/guides/auth/auth-anonymous#sign-in-anonymously).
-For this you need to create an anonymous user 
+For this you need to create an anonymous user
 
 ```js
 const { data, error } = await supabase.auth.signInAnonymously()
@@ -244,8 +246,7 @@ const { data, error } = await supabase.auth.signInAnonymously()
 [Enable manual linking](https://supabase.com/dashboard/project/_/settings/auth) in supabase
 
 Currently works for magic link and social login.
-If you use password login, you need user to update password after he 
-
+If you use password login, you need user to update password after he
 
 ## Customization
 
